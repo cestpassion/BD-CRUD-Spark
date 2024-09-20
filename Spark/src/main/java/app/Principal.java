@@ -16,11 +16,11 @@ public class Principal {
             return renderHTMLForm();
         });
 
-        post("/music", (request, response) -> musicService.add(request, response));
-        post("/music/get", (request, response) -> musicService.get(request, response));
-        post("/music/update", (request, response) -> musicService.update(request, response));
-        post("/music/delete", (request, response) -> musicService.remove(request, response));
-        post("/music/all", (request, response) -> musicService.getAll(request, response));
+        post("/music", (request, response) -> musicService.addMusic(request, response));
+        post("/music/get", (request, response) -> musicService.getMusic(request, response));
+        post("/music/update", (request, response) -> musicService.updateMusic(request, response));
+        post("/music/delete", (request, response) -> musicService.removeMusic(request, response));
+        post("/music/all", (request, response) -> musicService.getAllMusic(request, response));
     }
 
     private static String renderHTMLForm() {
