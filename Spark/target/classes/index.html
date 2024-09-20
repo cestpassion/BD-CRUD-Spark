@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD BD Music</title>
+    <style>
+    	*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			text-decoration: none;
+			border: none;
+			outline: none;
+			scroll-behavior: smooth;
+		}
+		  	
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+            background-color: rgb(14, 14, 14);
+		  	color: #fff;
+		  	padding-top: 60px;
+        }
+        
+        header{
+			position: fixed; 
+			z-index: 100;
+			display:block;
+			top: 0;
+			left: 0;
+			width: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			backdrop-filter: blur(10px);
+			box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 50%);
+		}
+
+        h1 {
+            color: rgb(38, 162, 105);
+  			text-shadow: 0px 0px 5px rgba(38, 162, 105, 0.678);
+  			display: flex;
+  			justify-content: center;
+  			margin-top: 10px;
+  			margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        form {
+            background-color: rgb(36, 31, 49);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            margin-left: 500px;
+            margin-right: 500px
+        }
+        
+        @media only screen and (max-width: 1500px) {
+		    form {
+            margin-left: 200px;
+            margin-right: 200px
+            }
+        }
+        
+        @media only screen and (max-width: 1000px) {
+		    form {
+            margin-left: 100px;
+            margin-right: 100px
+            }
+        }
+        
+        @media only screen and (max-width: 600px) {
+		    form {
+            margin-left: 20px;
+            margin-right: 20px
+            }
+        }
+        
+        .button-form {
+            margin-left: 230px;
+            margin-right: 230px
+        }
+        
+        @media only screen and (max-width: 860px) {
+		    .button-form {
+	            margin-left: 150px;
+	            margin-right: 150px
+	        }
+        }
+        
+        @media only screen and (max-width: 700px) {
+		    .button-form {
+	            margin-left: 100px;
+	            margin-right: 100px
+	        }
+        }
+        
+        @media only screen and (max-width: 450px) {
+		    .button-form {
+	            margin-left: 60px;
+	            margin-right: 60px
+	        }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], 
+        input[type="number"] {
+            width: 100%;
+            padding: 8px 0;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgb(14, 14, 14);
+            border: 1px solid #d4e6d0;
+            border-radius: 4px;
+            color: #2e8b57;
+        }
+
+        .error {
+            background-color: rgb(14, 14, 14);
+            border: 1px solid #e6d0d0;
+            color: #d9534f;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        footer {
+			background-color: rgb(0, 0, 0);
+			color: rgb(38, 162, 105);
+  			text-shadow: 0px 0px 5px rgba(38, 162, 105, 0.678);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			font-size: 13px;
+			margin-bottom: -30px;
+		}
+       
+    </style>
+</head>
+<body>
+    <header><h1>Music (not)PlayList</h1></header>
+    
+    <h2>Adicionar Música</h2>
+    <form action='/music' method='post'>
+        <label for="name">Nome:</label>
+        <input type='text' id='name' name='name' required><br>
+        <label for="artist">Artista:</label>
+        <input type='text' id='artist' name='artist' required><br>
+        <label for="gender">Gênero:</label>
+        <input type='text' id='gender' name='gender' required><br>
+        <div class="button-container">
+            <input type='submit' value='Adicionar'>
+        </div>
+    </form>
+
+    <h2>Excluir Música</h2>
+    <form action='/music/delete' method='post'>
+	    <label for="code-delete">Código:</label>
+	    <input type='number' id='code-delete' name='code' required><br>
+	    <div class="button-container">
+	        <input type='submit' value='Excluir'>
+	    </div>
+    </form>
+
+    <h2>Alterar Música</h2>
+    <form action='/music/update' method='post'>
+        <label for="code-update">Código:</label>
+        <input type='number' id='code-update' name='code' required><br>
+        <label for="name-update">Nome:</label>
+        <input type='text' id='name-update' name='name'><br>
+        <label for="artist-update">Artista:</label>
+        <input type='text' id='artist-update' name='artist'><br>
+        <label for="gender-update">Gênero:</label>
+        <input type='text' id='gender-update' name='gender'><br>
+        <div class="button-container">
+            <input type='submit' value='Alterar'>
+        </div>
+    </form>
+
+    <h2>Pesquisar uma Música</h2>
+    <form action='/music/get' method='post'>
+        <label for="code-get">Código:</label>
+        <input type='number' id='code-get' name='code' required><br>
+        <div class="button-container">
+            <input type='submit' value='Pesquisar'>
+        </div>
+    </form>
+
+    <h2>Listar todos as Músicas</h2>
+    <div class="button-form">
+	    <form action='/music/all' method='post'>
+	        <div class="button-container">
+	            <input type='submit' value='Listar Todas as Musicas'>
+	        </div>
+	    </form>
+	</div>
+    
+    <footer>
+        <p style="margin: 5px;">© Bruna Furtado | Todos os Direitos reservados</p>
+    </footer>
+</body>
+</html>
