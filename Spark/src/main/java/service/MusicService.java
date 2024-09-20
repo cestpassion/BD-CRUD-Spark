@@ -24,22 +24,84 @@ public class MusicService {
 
         if (musicDAO.insertMusic(music)) {
             response.status(201);
-            return "<html><body><div class='message'>Música cadastrada com sucesso!</div></body></html>";
+            return "<html>" +
+                    "<head>" +
+                    "<title>Música Cadastrada</title>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 20px; background-color: rgb(14, 14, 14); color: #fff; }" +
+                    ".message-container { background-color: rgb(36, 31, 49); padding: 20px; border-radius: 8px; text-align: center; }" +
+                    "h1 { color: rgb(38, 162, 105); }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='message-container'>" +
+                    "<h1>Música Cadastrada com Sucesso!</h1>" +
+                    "<p>A música <strong>" + name + "</strong> foi cadastrada.</p>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
         } else {
             response.status(500);
-            return "<html><body><div class='error'>Não foi possível cadastrar música.</div></body></html>";
+            return "<html>" +
+                    "<head>" +
+                    "<title>Erro ao Cadastrar Música</title>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 20px; background-color: rgb(14, 14, 14); color: #fff; }" +
+                    ".error-container { background-color: rgb(36, 31, 49); padding: 20px; border-radius: 8px; text-align: center; }" +
+                    "h1 { color: rgb(255, 0, 0); }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='error-container'>" +
+                    "<h1>Erro ao Cadastrar Música</h1>" +
+                    "<p>Não foi possível cadastrar a música.</p>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
         }
     }
+
     
     public Object removeMusic(Request request, Response response) {
         int code = Integer.parseInt(request.queryParams("code"));
         if (musicDAO.deleteMusic(code)) {
-            return "<html><body><div class='message'>Música deletada com sucesso!</div></body></html>";
+            return "<html>" +
+                    "<head>" +
+                    "<title>Música Deletada</title>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 20px; background-color: rgb(14, 14, 14); color: #fff; }" +
+                    ".message-container { background-color: rgb(36, 31, 49); padding: 20px; border-radius: 8px; text-align: center; }" +
+                    "h1 { color: rgb(38, 162, 105); }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='message-container'>" +
+                    "<h1>Música Deletada com Sucesso!</h1>" +
+                    "<p>A música com o código <strong>" + code + "</strong> foi deletada.</p>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
         } else {
             response.status(500);
-            return "<html><body><div class='error'>Erro ao deletar música.</div></body></html>";
+            return "<html>" +
+                    "<head>" +
+                    "<title>Erro ao Deletar Música</title>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 20px; background-color: rgb(14, 14, 14); color: #fff; }" +
+                    ".error-container { background-color: rgb(36, 31, 49); padding: 20px; border-radius: 8px; text-align: center; }" +
+                    "h1 { color: rgb(255, 0, 0); }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='error-container'>" +
+                    "<h1>Erro ao Deletar Música</h1>" +
+                    "<p>Erro ao deletar a música com o código <strong>" + code + "</strong>.</p>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
         }
     }
+
 
     public Object updateMusic(Request request, Response response) {
         int code = Integer.parseInt(request.queryParams("code"));
@@ -49,12 +111,43 @@ public class MusicService {
 
         Music music = new Music(code, name, artist, gender);
         if (musicDAO.updateMusic(music)) {
-            return "<html><body><div class='message'>Música atualizada com sucesso!</div></body></html>";
+            return "<html>" +
+                    "<head>" +
+                    "<title>Música Atualizada</title>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 20px; background-color: rgb(14, 14, 14); color: #fff; }" +
+                    ".message-container { background-color: rgb(36, 31, 49); padding: 20px; border-radius: 8px; text-align: center; }" +
+                    "h1 { color: rgb(38, 162, 105); }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='message-container'>" +
+                    "<h1>Música Atualizada com Sucesso!</h1>" +
+                    "<p>A música <strong>" + name + "</strong> foi atualizada.</p>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
         } else {
             response.status(500);
-            return "<html><body><div class='error'>Não foi possível atualizar música.</div></body></html>";
+            return "<html>" +
+                    "<head>" +
+                    "<title>Erro ao Atualizar Música</title>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 20px; background-color: rgb(14, 14, 14); color: #fff; }" +
+                    ".error-container { background-color: rgb(36, 31, 49); padding: 20px; border-radius: 8px; text-align: center; }" +
+                    "h1 { color: rgb(255, 0, 0); }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='error-container'>" +
+                    "<h1>Erro ao Atualizar Música</h1>" +
+                    "<p>Não foi possível atualizar a música com o código <strong>" + code + "</strong>.</p>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
         }
     }
+
     
     public Object getMusic(Request request, Response response) {
         int code = Integer.parseInt(request.queryParams("code"));
